@@ -1337,7 +1337,7 @@ do_kill:
             min_score_adj = level_oomadj[level];
         }
 
-        pages_freed = find_and_kill_processes(min_score_adj, pages_to_free);
+        pages_freed = find_and_kill_processes(min_score_adj, 0);
 
         if (pages_freed == 0) {
             /* Rate limit kill reports when nothing was reclaimed */
