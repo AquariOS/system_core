@@ -43,6 +43,7 @@ on init
 
     # Mix device-specific information into the entropy pool
     copy /proc/cmdline /dev/urandom
+    copy /system/etc/prop.default /dev/urandom
     copy /default.prop /dev/urandom
 
     symlink /system/bin /bin
@@ -701,8 +702,6 @@ on property:vold.decrypt=trigger_restart_min_framework
     class_start main
 
 on property:vold.decrypt=trigger_restart_framework
-    # A/B update verifier that marks a successful boot.
-    exec_start update_verifier
     stop surfaceflinger
     start surfaceflinger
     class_start main
